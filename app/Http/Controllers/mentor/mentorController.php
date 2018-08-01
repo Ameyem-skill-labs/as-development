@@ -608,7 +608,7 @@ class mentorController extends Controller
         $task->update();
 
         $chapters = coursetask::where('task_id',$task->id)
-        ->join('chapter','chapter.id','coursetasks.chapter_id')->select('course_id')
+        ->join('chapters','chapters.id','coursetasks.chapter_id')->select('course_id')
         ->get();
         foreach($chapters as $chapter){
             self::UpdatetotalCoursecredits($chapter ->course_id);
