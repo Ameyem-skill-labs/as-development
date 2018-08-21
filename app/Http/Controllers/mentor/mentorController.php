@@ -231,12 +231,12 @@ class mentorController extends Controller
         // $course = course::with('chapter')->get()->all();
         // return $course;
         // if(count($course)!=0){
-            
-            $course = course::with('chapter')->where('id',$id)->get()->first();   
-            // return           
-            $chids=array_sort(array_column($course->chapter->toArray(),'id'));
-            
-            
+           
+           $course = course::with('chapter')->where('id',$id)->get()->first();   
+             //return           
+            $chids=array_column($course->chapter->toArray(),'id');
+             sort($chids);
+           //return $chids; 
           $tasks=coursetask::whereIn('chapter_id',$chids)->get();
         //   $tids=array_column($tasks,'task_id');
         //   $tchids=array_column($tasks,'chapter_id');
@@ -258,8 +258,8 @@ class mentorController extends Controller
 
 
 
-        $chids=chapter::where('course_id',$course_id)
-        ->select('id')->get()->toArray();
+        //$chids=chapter::where('course_id',$course_id)
+        //->select('id')->get()->toArray();
           $tasks_ids=coursetask::whereIn('chapter_id',$chids)
     ->join('admin_tasks','admin_tasks.id','=','coursetasks.task_id')
     ->select('task_id','usercredits','guidecredits','reviewercredits')->get();
