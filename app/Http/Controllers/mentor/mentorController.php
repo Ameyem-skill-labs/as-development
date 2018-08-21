@@ -231,9 +231,10 @@ class mentorController extends Controller
         // $course = course::with('chapter')->get()->all();
         // return $course;
         // if(count($course)!=0){
-            // return 
-            $course = course::with('chapter')->where('id',$id)->get()->first();             
-            $chids=array_column($course->chapter->toArray(),'id');
+            
+            $course = course::with('chapter')->where('id',$id)->get()->first();   
+            // return           
+            $chids=array_sort(array_column($course->chapter->toArray(),'id'));
             
             
           $tasks=coursetask::whereIn('chapter_id',$chids)->get();

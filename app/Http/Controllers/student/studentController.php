@@ -171,7 +171,8 @@ class studentController extends Controller
         
         $course =  course::withCount('chapter')->with('chapter')->where('id',$id)->first();         
         // return
-         $chids=array_column($course->chapter->toArray(),'id');
+        //  $chids=array_column($course->chapter->orderBy('id')->toArray(),'id');
+         $chids=array_sort(array_column($course->chapter->toArray(),'id'));
         //  return
         $tasks=coursetask::whereIn('chapter_id',$chids)->get();
         $quizs = quiz::whereIn('chapter_id',$chids)->get();
