@@ -13,7 +13,7 @@ class course extends Model
 
     public  function chapter()
     {
-        return $this->hasMany('App\chapter');
+        return $this->hasMany('App\chapter')->orderBy('id');
     }
 
     public function enrollment(){
