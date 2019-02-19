@@ -246,7 +246,7 @@ class RegisterController extends Controller
                 'password'          => Hash::make($data['password']),
                 'token'             => str_random(64),
                 'signup_ip_address' => $ipAddress->getClientIp(),
-                'activated'         => !config('settings.activation'),
+                'activated'         => 1,
                 'phone_number' => $data['phone_number'],
                 'type'      =>$data['type'] ,
                 'status'   =>$data['status'] ,
